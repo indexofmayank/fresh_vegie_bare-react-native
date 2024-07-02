@@ -2,10 +2,10 @@ import React from "react";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 //screens
-import HomeScreen from "../screens/HomeScreen";
-import OfferScreen from "../screens/OfferScreen";
-import CategoryScreen from "../screens/CategoryScreen";
-import ProfileScreen from "../screens/ProfileScreen";
+import HomeScreen from "../screens/AppStack/HomeScreen";
+import OfferScreen from "../screens/AppStack/OfferScreen";
+import CategoryScreen from "../screens/AppStack/CategoryScreen";
+import ProfileScreen from "../screens/AppStack/ProfileScreen";
 
 const Tab = createBottomTabNavigator();
 
