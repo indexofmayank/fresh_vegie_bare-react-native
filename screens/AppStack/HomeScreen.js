@@ -6,6 +6,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import Welcome from "../../components/Welcome";
 import Slider from "../../components/Slider";
+import Headings from "../../components/Heading";
 
 
 class HomeScreen extends React.Component {
@@ -31,6 +32,7 @@ class HomeScreen extends React.Component {
                 <ScrollView>
                     <Welcome />
                     <Slider />
+                    <Headings />
                 </ScrollView>
 
             </SafeAreaView>
