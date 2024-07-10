@@ -7,6 +7,8 @@ import Fontisto from 'react-native-vector-icons/Fontisto';
 import Welcome from "../../components/Welcome";
 import Slider from "../../components/Slider";
 import Headings from "../../components/Heading";
+import ProductRow from "../../components/ProductRow";
+import ProductCardView from "../../components/ProductCardView";
 
 
 class HomeScreen extends React.Component {
@@ -33,6 +35,8 @@ class HomeScreen extends React.Component {
                     <Welcome />
                     <Slider />
                     <Headings />
+                    <ProductCardView />
+                    <ProductCardView />
                 </ScrollView>
 
             </SafeAreaView>
