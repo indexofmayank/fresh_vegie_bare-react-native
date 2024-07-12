@@ -4,6 +4,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { NavigationContainer } from "@react-navigation/native";
 import BottomTabNavigation from "./BottomTabNavigation";
 import AuthStackNavigation from "./AuthStackNavigation";
+import AppStackNavigation from "./AppStackNavigation";
 
 class RootNavigation extends Component {
 
@@ -60,7 +61,7 @@ class RootNavigation extends Component {
         return (
                <>
                {isLoggedIn !== null ? (
-                <BottomTabNavigation />
+                <AppStackNavigation />
             ): (
                 <AuthStackNavigation />
             )}
