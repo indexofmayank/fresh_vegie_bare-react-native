@@ -1,45 +1,38 @@
-import React, { Component } from "react";
+import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet, FlatList } from 'react-native';
 import { COLORS, SIZES } from '../constants/theme';
 import Feather from 'react-native-vector-icons/Feather';
 import CategoryCard from "./CategoryCard";
+import { Category } from '../constants/Category';
+import {useNavigation} from '@react-navigation/native';
 
-const data = [
-    { id: 1, title: "Vegetables" },
-    { id: 2, title: "Fruits" },
-    { id: 3, title: "Additional Categories" },
-    { id: 4, title: "Packaging Options" }
-];
+const data = Category;
 
-class Headings extends Component {
-
-    render() {
-
-        renderItem = ({ item }) => {
-            return <CategoryCard Category={item} />
-        }
-
-        return (
-            <View>
-                <View style={styles.container}>
-                    <View style={styles.header}>
-                        <Text style={styles.headerTitle}>Shop by Categories</Text>
-                        <TouchableOpacity>
-                            <Feather name="grid" size={30} />
-                        </TouchableOpacity>
-                    </View>
-                </View>
-                <FlatList
-                    data={data}
-                    renderItem={renderItem}
-                    keyExtractor={item => item.id}
-                    horizontal
-                    showsHorizontalScrollIndicator={false}
-                />
-            </View>
-        );
+const Headings = () => {
+    const navigation = useNavigation();
+    const renderItem = ({ item }) => {
+        return <CategoryCard Category={item} />
     }
 
+    return (
+        <View>
+            <View style={styles.container}>
+                <View style={styles.header}>
+                    <Text style={styles.headerTitle}>Shop by Categories</Text>
+                    <TouchableOpacity onPress={() => navigation.navigate('CategroyPage')}>
+                        <Feather name="grid" size={30} />
+                    </TouchableOpacity>
+                </View>
+            </View>
+            <FlatList
+                data={data}
+                renderItem={renderItem}
+                keyExtractor={item => item.id}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+            />
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({
