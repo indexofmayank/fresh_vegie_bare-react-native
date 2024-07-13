@@ -20,7 +20,7 @@ class HomeScreen extends React.Component {
                         <Ionicons name="location-outline" size={24} />
                         <Text style={styles.location}>Hii inside homescreen</Text>
 
-                        <View style={{alignItems: "flex-end"}}>
+                        <View style={{ alignItems: "flex-end" }}>
                             <View style={styles.cartCount}>
                                 <Text style={styles.cartNumber}>8</Text>
                             </View>
@@ -35,8 +35,7 @@ class HomeScreen extends React.Component {
                     <Welcome />
                     <Slider />
                     <Headings />
-                    <ProductCardView />
-                    <ProductCardView />
+                    <ProductRow />
                 </ScrollView>
 
             </SafeAreaView>

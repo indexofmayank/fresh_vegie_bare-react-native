@@ -1,22 +1,36 @@
-import React, { Component } from "react";
-import { View, Text } from 'react-native';
+import React, {Component} from "react";
+import {View, Text, FlatList} from 'react-native';
 import ProductCardView from "./ProductCardView";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-const Products = [
-    { id: 1, name: 'Product 1', price: 10.99 },
-    { id: 2, name: 'Product 2', price: 19.99 },
-    { id: 3, name: 'Product 3', price: 5.99 },
+const data = [
+    {id: 1, image: require("../assets/products/samplefive.jpg"), title: 'Potato',  price: 22 },
+    {id: 2, image: require('../assets/products/samplethree.jpg'), title: 'Broccoli', price: 43 },
+    {id: 3, image: require('../assets/products/sampletwo.jpg'), title: 'Cabbage', price: 39},
+    {id: 4, image: require('../assets/products/sampelfour.jpg'), title: 'Onion', price: 13},
 ];
-
-
-class ProductRow extends Component {
+export default class ProductRow extends Component {
+    constructor(props) {
+        super(props);
+    }
     render() {
+
+        renderItem = ({item}) => {
+            return <ProductCardView product={item} />
+        }
+
         return (
-            <View>
-                <ProductCardView />
-            </View>
+           
+           <SafeAreaView>
+           <FlatList
+           data={data}
+           renderItem={renderItem}
+           keyExtractor={item => item.id}
+           numColumns={2}
+           />
+           </SafeAreaView>
+          
         );
     }
-}
 
-export default ProductRow;
+}

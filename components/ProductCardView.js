@@ -1,89 +1,70 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { COLORS, SHADOWS, SIZES } from '../constants/theme';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { useNavigation } from '@react-navigation/native';  // Import useNavigation
 
 const ProductCardView = ({ product }) => {
+  const navigation = useNavigation();  // Get navigation object using the hook
+
   return (
-    <View style={styles.card}>
-      <View style={styles.imageContainer}>
-        <Image source={require('../assets/products/sampelfour.jpg')} style={styles.image} />
-        <View style={styles.badge}>
-          <Text style={styles.badgeText}>Offer</Text>
+    <TouchableOpacity onPress={() => navigation.navigate('ProductDetailPage')}>
+      <View style={styles.container}>
+        <View style={styles.imageContainer}>
+          <Image
+            source={product.image}
+            style={styles.image}
+          />
         </View>
-        <TouchableOpacity style={styles.likeButton}>
-          <Ionicons name='heart-outline' />
+        <View style={styles.details}>
+          <Text style={styles.title} numberOfLines={1}>{product.title}</Text>
+          <Text style={styles.price}>$234</Text>
+        </View>
+        <TouchableOpacity style={styles.addBtn}>
+          <Ionicons name="add-circle" size={35} color={COLORS.primary} />
         </TouchableOpacity>
       </View>
-      <View style={styles.info}>
-        <Text style={styles.title}>Product</Text>
-        <Text style={styles.price}>$100</Text>
-        <TouchableOpacity style={styles.addButton}>
-          <Text style={styles.addButtonText}>Add to Cart</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
+export default ProductCardView;
+
 const styles = StyleSheet.create({
-  card: {
-    borderRadius: 10,
-    overflow: 'hidden',
-    elevation: 5,
-    backgroundColor: '#fff',
-    margin: 10,
+  container: {
+    width: 182,
+    height: 240,
+    marginEnd: 22,
+    borderRadius: SIZES.medium,
+    backgroundColor: COLORS.secondary,
   },
   imageContainer: {
-    position: 'relative',
+    flex: 1,
+    width: 170,
+    marginLeft: SIZES.samll / 2,
+    marginTop: SIZES.samll,
+    overflow: "hidden",
   },
   image: {
-    width: '100%',
-    height: 200,
+    aspectRatio: 1,
+    resizeMode: 'cover',
   },
-  badge: {
-    position: 'absolute',
-    top: 10,
-    left: 10,
-    backgroundColor: 'red',
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    borderRadius: 5,
-  },
-  badgeText: {
-    color: '#fff',
-    fontWeight: 'bold',
-  },
-  likeButton: {
-    position: 'absolute',
-    top: 10,
-    right: 10,
-    backgroundColor: 'rgba(0, 0, 0, 0.3)',
-    borderRadius: 20,
-    padding: 8,
-  },
-  info: {
-    padding: 10,
+  details: {
+    padding: SIZES.samll
   },
   title: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginBottom: 5,
+    fontFamily: "Poppins-Bold",
+    fontSize: SIZES.large,
+    marginBottom: 2
   },
   price: {
-    fontSize: 14,
-    color: '#888',
-    marginBottom: 10,
+    fontFamily: "Poppins-Bold",
+    fontSize: SIZES.medium,
+    marginBottom: 2
   },
-  addButton: {
-    backgroundColor: '#007bff',
-    paddingVertical: 10,
-    borderRadius: 5,
-  },
-  addButtonText: {
-    color: '#fff',
-    textAlign: 'center',
-    fontWeight: 'bold',
-  },
+  addBtn: {
+    position: "absolute",
+    bottom: SIZES.xSmall,
+    right: SIZES.xSmall
+  }
 });
-
-export default ProductCardView;

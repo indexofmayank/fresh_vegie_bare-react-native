@@ -5,6 +5,7 @@ import Remo from "../pages/Remo";
 import {createStackNavigator} from '@react-navigation/stack';
 import { NavigationContainer } from "@react-navigation/native";
 import BottomTabNavigation from "./BottomTabNavigation";
+import ProductDetailPage from "../pages/ProductDetailPage";
 
 const Stack = createStackNavigator();
 
@@ -12,8 +13,11 @@ export default class AppStackNavigation extends Component {
 
     render() {
         return (
-                <Stack.Navigator initialRouteName="BottomTabNavigation">
+                <Stack.Navigator initialRouteName="BottomTabNavigation" screenOptions={{
+                    headerShown: false,
+                }}>
                     <Stack.Screen name="BottomTabNavigation" component={BottomTabNavigation} />
+                    <Stack.Screen name="ProductDetailPage" component={ProductDetailPage} />
                     <Stack.Screen name="Demo" component={Demo} />
                     <Stack.Screen name="Remo" component={Remo} />
                 </Stack.Navigator>
