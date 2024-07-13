@@ -8,30 +8,29 @@ import Welcome from "../../components/Welcome";
 import Slider from "../../components/Slider";
 import Headings from "../../components/Heading";
 import ProductRow from "../../components/ProductRow";
-import ProductCardView from "../../components/ProductCardView";
 
 
 class HomeScreen extends React.Component {
     render() {
         return (
             <SafeAreaView>
-                <View style={styles.appBarWrapper}>
-                    <View style={styles.appBar}>
-                        <Ionicons name="location-outline" size={24} />
-                        <Text style={styles.location}>Hii inside homescreen</Text>
-
-                        <View style={{ alignItems: "flex-end" }}>
-                            <View style={styles.cartCount}>
-                                <Text style={styles.cartNumber}>8</Text>
-                            </View>
-                            <TouchableOpacity>
-                                <Fontisto name='shopping-bag' size={24} />
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                </View>
 
                 <ScrollView>
+                    <View style={styles.appBarWrapper}>
+                        <View style={styles.appBar}>
+                            <Ionicons name="location-outline" size={24} />
+                            <Text style={styles.location}>ETA Nodia</Text>
+
+                            <View style={{ alignItems: "flex-end" }}>
+                                <View style={styles.cartCount}>
+                                    <Text style={styles.cartNumber}>8</Text>
+                                </View>
+                                <TouchableOpacity>
+                                    <Fontisto name='shopping-bag' size={24} />
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    </View>
                     <Welcome />
                     <Slider />
                     <Headings />

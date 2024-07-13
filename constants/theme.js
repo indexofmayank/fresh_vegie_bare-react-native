@@ -12,6 +12,7 @@ export const COLORS = {
     red: '#e81C135',
     green: "#00C135",
     lightWhite: "#FAFAFC",
+    frenGreen: '#4F7942',
 };
 
 export const SIZES = {

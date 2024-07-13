@@ -3,14 +3,17 @@ import { View, StyleSheet, Image, Text } from 'react-native';
 import { COLORS, SIZES } from '../constants';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 
 const ProductDetailPage = () => {
     const navigation = useNavigation();
-
+    const route = useRoute();
+    const {product} = route.params;
+    
+    console.log(product);
     return (
         <View style={styles.container}>
             <View style={styles.upperRow}>
@@ -23,19 +26,20 @@ const ProductDetailPage = () => {
                 </TouchableOpacity>
             </View>
             <Image
-                source={require('../assets/products/sampelfour.jpg')}
+                source={product.image}
                 style={styles.image}
             />
             <View style={styles.details}>
                 <View style={styles.titleRow}>
-                    <Text style={styles.title}>Product</Text>
+                    <Text style={styles.title}>{product.title}</Text>
                     <View style={styles.priceWrapper}>
-                        <Text style={styles.price}>$493.23</Text>
+                        <Text style={styles.price}>{product.price}</Text>
                     </View>
                 </View>
                 <View style={styles.ratingRow}>
                     <View style={styles.rating}>
-                        {[1, 2, 3, 4, 5].map((index) => (
+                        {/*rating */}
+                        {[...Array(product.rating)].map((_, index) => (
                             <Ionicons
                                 key={index}
                                 name='star'
@@ -43,13 +47,13 @@ const ProductDetailPage = () => {
                                 color="gold"
                             />
                         ))}
-                        <Text style={styles.ratingText}>..(4.9)</Text>
+                    <Text style={styles.ratingText}>{product.rating}</Text>
                     </View>
                     <View style={styles.rating}>
                         <TouchableOpacity onPress={() => { }}>
                             <SimpleLineIcons name='plus' size={20} />
                         </TouchableOpacity>
-                        <Text style={styles.ratingText}>count</Text>
+                        <Text style={styles.ratingText}>{product.rating}</Text>
                         <TouchableOpacity onPress={() => { }}>
                             <SimpleLineIcons name='minus' size={20} />
                         </TouchableOpacity>
@@ -58,7 +62,7 @@ const ProductDetailPage = () => {
                 <View style={styles.descriptionWrapper}>
                     <Text style={styles.description}>Description</Text>
                     <Text style={styles.descText}>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        {product.detail}
                     </Text>
                 </View>
                 <View style={{ marginBottom: SIZES.samll }}>
@@ -101,7 +105,7 @@ const styles = StyleSheet.create({
         zIndex: 999
     },
     image: {
-        aspectRatio: 1,
+       aspectRatio: 2,
         resizeMode: 'cover'
     },
     details: {
@@ -189,7 +193,7 @@ const styles = StyleSheet.create({
     },
     cartBtn: {
         width: SIZES.width * 0.7,
-        backgroundColor: COLORS.black,
+        backgroundColor: COLORS.frenGreen,
         padding: SIZES.samll,
         borderRadius: SIZES.large,
         marginLeft: 12
@@ -205,7 +209,7 @@ const styles = StyleSheet.create({
         height: 37,
         borderRadius: 50,
         margin: SIZES.samll,
-        backgroundColor: COLORS.black,
+        backgroundColor: COLORS.frenGreen,
         alignItems: "center",
         justifyContent: "center"
     }

@@ -1,10 +1,24 @@
 import React, { Component } from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, FlatList } from 'react-native';
 import { COLORS, SIZES } from '../constants/theme';
 import Feather from 'react-native-vector-icons/Feather';
+import CategoryCard from "./CategoryCard";
+
+const data = [
+    { id: 1, title: "Vegetables" },
+    { id: 2, title: "Fruits" },
+    { id: 3, title: "Additional Categories" },
+    { id: 4, title: "Packaging Options" }
+];
 
 class Headings extends Component {
+
     render() {
+
+        renderItem = ({ item }) => {
+            return <CategoryCard Category={item} />
+        }
+
         return (
             <View>
                 <View style={styles.container}>
@@ -15,20 +29,13 @@ class Headings extends Component {
                         </TouchableOpacity>
                     </View>
                 </View>
-
-                <View style={styles.categoryListContainer}>
-                    <View style={styles.categoryBox}>
-                        <Text style={styles.categoryText}>Category 1</Text>
-                    </View>
-                    <View style={styles.categoryBox}>
-                        <Text style={styles.categoryText}>Category 2</Text>
-                    </View>
-                    <View style={styles.categoryBox}>
-                        <Text style={styles.categoryText}>Category 3</Text>
-                    </View>
-                    {/* Add more category boxes as needed */}
-                </View>
-
+                <FlatList
+                    data={data}
+                    renderItem={renderItem}
+                    keyExtractor={item => item.id}
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                />
             </View>
         );
     }
@@ -37,7 +44,7 @@ class Headings extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: SIZES.xSmall,
+        marginTop: SIZES.samll,
         marginHorizontal: 12
     },
     header: {
@@ -47,23 +54,6 @@ const styles = StyleSheet.create({
     headerTitle: {
         fontFamily: "Poppins-SemiBold",
         fontSize: SIZES.xLarge
-    },
-    categoryListContainer: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexWrap: 'wrap', // Optional: Wrap to next line if needed
-        marginTop: 20,
-    },
-    categoryBox: {
-        backgroundColor: '#DDDDDD',
-        padding: 10,
-        margin: 5,
-        borderRadius: 5,
-    },
-    categoryText: {
-        fontSize: 16,
-        fontWeight: 'bold',
     },
 });
 

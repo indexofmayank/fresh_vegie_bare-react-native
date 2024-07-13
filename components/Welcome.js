@@ -14,11 +14,11 @@ class Welcome extends Component {
                 <Text style={styles.welcomeTxt(COLORS.black, SIZES.xSmall)}>
                     <Text style={styles.welcomeTxt(COLORS.black, SIZES.xSmall)}>
                         {" "}
-                        Fint The Most
+                        Find The Most
                     </Text>
-                    <Text style={styles.welcomeTxt(COLORS.primary, 0)}>
+                    <Text style={styles.welcomeTxt(COLORS.green, 0)}>
                         {" "}
-                        Luxurious Furniture
+                        Fresh Vegetable
                     </Text>
                 </Text>
 

@@ -8,7 +8,9 @@ const ProductCardView = ({ product }) => {
   const navigation = useNavigation();  // Get navigation object using the hook
 
   return (
-    <TouchableOpacity onPress={() => navigation.navigate('ProductDetailPage')}>
+    <TouchableOpacity 
+      onPress={() => navigation.navigate('ProductDetailPage', { product })}
+    >
       <View style={styles.container}>
         <View style={styles.imageContainer}>
           <Image
@@ -18,10 +20,10 @@ const ProductCardView = ({ product }) => {
         </View>
         <View style={styles.details}>
           <Text style={styles.title} numberOfLines={1}>{product.title}</Text>
-          <Text style={styles.price}>$234</Text>
+          <Text style={styles.price}>${product.price}</Text>
         </View>
         <TouchableOpacity style={styles.addBtn}>
-          <Ionicons name="add-circle" size={35} color={COLORS.primary} />
+          <Ionicons name="add-circle" size={35} color={COLORS.frenGreen} />
         </TouchableOpacity>
       </View>
     </TouchableOpacity>
@@ -37,6 +39,7 @@ const styles = StyleSheet.create({
     marginEnd: 22,
     borderRadius: SIZES.medium,
     backgroundColor: COLORS.secondary,
+    position: 'relative',  // Ensure absolute positioning works properly
   },
   imageContainer: {
     flex: 1,
@@ -65,6 +68,6 @@ const styles = StyleSheet.create({
   addBtn: {
     position: "absolute",
     bottom: SIZES.xSmall,
-    right: SIZES.xSmall
+    right: SIZES.xSmall,
   }
 });
