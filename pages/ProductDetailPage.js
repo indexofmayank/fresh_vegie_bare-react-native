@@ -13,7 +13,6 @@ const ProductDetailPage = () => {
     const route = useRoute();
     const {product} = route.params;
     
-    console.log(product);
     return (
         <View style={styles.container}>
             <View style={styles.upperRow}>
@@ -33,7 +32,7 @@ const ProductDetailPage = () => {
                 <View style={styles.titleRow}>
                     <Text style={styles.title}>{product.title}</Text>
                     <View style={styles.priceWrapper}>
-                        <Text style={styles.price}>{product.price}</Text>
+                        <Text style={styles.price}>₹ {product.offerPrice}</Text>
                     </View>
                 </View>
                 <View style={styles.ratingRow}>
@@ -69,11 +68,11 @@ const ProductDetailPage = () => {
                     <View style={styles.location}>
                         <View style={{ flexDirection: 'row' }}>
                             <Ionicons name='location-outline' size={20} />
-                            <Text>Seatle</Text>
+                            <Text>ETA Greater Noida</Text>
                         </View>
                         <View style={{ flexDirection: "row" }}>
                             <MaterialCommunityIcons name='truck-delivery-outline' size={20} />
-                            <Text>Free Delievry</Text>
+                            <Text> Free Delievry</Text>
                         </View>
                     </View>
                 </View>

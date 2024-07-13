@@ -6,7 +6,6 @@ import { useNavigation } from '@react-navigation/native';  // Import useNavigati
 
 const ProductCardView = ({ product }) => {
   const navigation = useNavigation();  // Get navigation object using the hook
-
   return (
     <TouchableOpacity 
       onPress={() => navigation.navigate('ProductDetailPage', { product })}
@@ -20,7 +19,8 @@ const ProductCardView = ({ product }) => {
         </View>
         <View style={styles.details}>
           <Text style={styles.title} numberOfLines={1}>{product.title}</Text>
-          <Text style={styles.price}>${product.price}</Text>
+          <Text style={styles.price}>₹{product.price}</Text>
+            <Text style={styles.offerPrice}>₹{product.offerPrice}</Text>
         </View>
         <TouchableOpacity style={styles.addBtn}>
           <Ionicons name="add-circle" size={35} color={COLORS.frenGreen} />
@@ -53,17 +53,24 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
   },
   details: {
-    padding: SIZES.samll
+    padding: SIZES.samll,
   },
   title: {
     fontFamily: "Poppins-Bold",
     fontSize: SIZES.large,
-    marginBottom: 2
+    marginBottom: 2,
   },
   price: {
     fontFamily: "Poppins-Bold",
     fontSize: SIZES.medium,
-    marginBottom: 2
+    marginBottom: 2,
+    textDecorationLine: 'line-through',  // Apply strikethrough if offerPrice exists
+    color: 'red'  // Change color to indicate original price
+  },
+  offerPrice: {
+    fontFamily: "Poppins-Bold",
+    fontSize: SIZES.medium,
+    color: 'green',
   },
   addBtn: {
     position: "absolute",

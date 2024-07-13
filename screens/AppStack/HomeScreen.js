@@ -19,7 +19,7 @@ class HomeScreen extends React.Component {
                     <View style={styles.appBarWrapper}>
                         <View style={styles.appBar}>
                             <Ionicons name="location-outline" size={24} />
-                            <Text style={styles.location}>ETA Nodia</Text>
+                            <Text style={styles.location}>ETA Greater Noida</Text>
 
                             <View style={{ alignItems: "flex-end" }}>
                                 <View style={styles.cartCount}>
