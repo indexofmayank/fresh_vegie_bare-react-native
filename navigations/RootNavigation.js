@@ -1,15 +1,12 @@
-import React, {Component} from "react";
-import {View, Text} from 'react-native';
+import React, { Component } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { NavigationContainer } from "@react-navigation/native";
 import BottomTabNavigation from "./BottomTabNavigation";
 import AuthStackNavigation from "./AuthStackNavigation";
-import AppStackNavigation from "./AppStackNavigation";
 
 class RootNavigation extends Component {
-
     isLoggedIn = null;
-    constructor(props){
+    token = null;
+    constructor(props) {
         super(props);
         this.state = {
             userToken: null,
@@ -20,28 +17,36 @@ class RootNavigation extends Component {
         this._storeData();
         //will call the retrieve data
         this._retrieveData();
+        const { route } = this.props;
+        this.token = route?.params?.token;
+        if(this.token !== null && this.token !== 'null'){
+            this._storeData();
+            this._retrieveData();
+        } else{
+            this.props.navigation.goBack();
+        }
     }
+
     _storeData = async () => {
         try {
-            await AsyncStorage.setItem(
-                '@userToken',
-                JSON.stringify(null)
-            );
+            // Storing 'null' as a string to represent null value
+            console.log(this.token);
+            await AsyncStorage.setItem('@userToken', this.token);
         } catch (error) {
-                console.error('Error saving data: ', error);
+            console.error('Error saving data: ', error);
         }
     };
 
     _retrieveData = async () => {
         try {
             const value = await AsyncStorage.getItem('@userToken');
-            if(value !== null) {
-                const data = JSON.parse(value);
-                console.log('Retrieved data: ', data);
-                //Here you can set retrived data to state
-                this.setState({userToken: data});
+            if (value !== null && value !== 'null') {
+                console.log('Retrieved data: ', value);
+                // Here you can set retrieved data to state
+                this.setState({ userToken: value });
             } else {
-                console.log('No data found');
+                console.log('No data found or value is null');
+                this.setState({ userToken: null });
             }
         } catch (error) {
             console.error('Error retrieving data: ', error);
@@ -49,28 +54,22 @@ class RootNavigation extends Component {
     };
 
     render() {
-
-        if(this.state.userToken !== null) {
-            isLoggedIn = true;
+        if (this.state.userToken !== null) {
+            this.isLoggedIn = true;
         } else {
-            isLoggedIn = false; 
+            this.isLoggedIn = false;
         }
 
-       // const userToken = null ;
-
         return (
-               <>
-               {isLoggedIn !== null ? (
-                <AppStackNavigation />
-            ): (
-                <AuthStackNavigation />
-            )}
-               </>
+            <>
+                {this.isLoggedIn ? (
+                    <BottomTabNavigation />
+                ) : (
+                    <AuthStackNavigation />
+                )}
+            </>
         );
-
     }
-
-
 }
- 
+
 export default RootNavigation;
