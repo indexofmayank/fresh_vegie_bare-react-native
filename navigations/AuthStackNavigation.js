@@ -14,12 +14,13 @@ class AuthStackNavigation extends Component {
 
     render() {
         return (
-            <NavigationContainer>
+            <NavigationContainer independent={true}>
                 <Stack.Navigator initialRouteName="SignInScreen" screenOptions={{
-                    headerShown: false
-                }}>
+                    headerShown: false,
+                     }}>
                     <Stack.Screen name="SignUpScreen" component={SignUpScreen} />
                     <Stack.Screen name="SignInScreen" component={SignInScreen} />
+                    <Stack.Screen name="RootNavigation" component={RootNavigation} />
                 </Stack.Navigator>
 
             </NavigationContainer>

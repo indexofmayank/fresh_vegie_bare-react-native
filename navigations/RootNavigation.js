@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import BottomTabNavigation from "./BottomTabNavigation";
 import AuthStackNavigation from "./AuthStackNavigation";
-import { NavigationContainer } from "@react-navigation/native";
 import AppStackNavigation from "./AppStackNavigation";
 
 class RootNavigation extends Component {

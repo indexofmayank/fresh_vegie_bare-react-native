@@ -15,7 +15,7 @@ export default class AppStackNavigation extends Component {
 
     render() {
         return (
-            <NavigationContainer>
+            <NavigationContainer independent={true}>
                 <Stack.Navigator initialRouteName="BottomTabNavigation" screenOptions={{
                     headerShown: false,
                 }}>

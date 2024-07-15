@@ -2,25 +2,29 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { COLORS, SHADOWS, SIZES } from '../constants/theme';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { useNavigation } from '@react-navigation/native';  // Import useNavigation
+import { useNavigation } from '@react-navigation/native';
 
 const ProductCardView = ({ product }) => {
-  const navigation = useNavigation();  // Get navigation object using the hook
+  const navigation = useNavigation();
+
   return (
-    <TouchableOpacity 
-      onPress={() => navigation.navigate('ProductDetailPage', { product })}
-    >
+    <TouchableOpacity onPress={() => navigation.navigate('ProductDetailPage', { product })}>
       <View style={styles.container}>
         <View style={styles.imageContainer}>
-          <Image
-            source={product.image}
-            style={styles.image}
-          />
+          <Image source={product.image} style={styles.image} />
+          {product.offer && (
+            <View style={styles.offerBadge}>
+              <Text style={styles.offerText}>{product.offer}% OFF</Text>
+            </View>
+          )}
+          <TouchableOpacity style={styles.heartIcon}>
+            <Ionicons name="heart-outline" size={25} color="red" />
+          </TouchableOpacity>
         </View>
         <View style={styles.details}>
           <Text style={styles.title} numberOfLines={1}>{product.title}</Text>
           <Text style={styles.price}>₹{product.price}</Text>
-            <Text style={styles.offerPrice}>₹{product.offerPrice}</Text>
+          <Text style={styles.offerPrice}>₹{product.offerPrice}</Text>
         </View>
         <TouchableOpacity style={styles.addBtn}>
           <Ionicons name="add-circle" size={35} color={COLORS.frenGreen} />
@@ -39,7 +43,7 @@ const styles = StyleSheet.create({
     marginEnd: 22,
     borderRadius: SIZES.medium,
     backgroundColor: COLORS.secondary,
-    position: 'relative',  // Ensure absolute positioning works properly
+    position: 'relative',
   },
   imageContainer: {
     flex: 1,
@@ -51,6 +55,25 @@ const styles = StyleSheet.create({
   image: {
     aspectRatio: 1,
     resizeMode: 'cover',
+  },
+  offerBadge: {
+    position: 'absolute',
+    top: SIZES.samll,
+    left: SIZES.samll,
+    backgroundColor: 'red',
+    borderRadius: SIZES.xSmall,
+    paddingHorizontal: SIZES.xSmall,
+    paddingVertical: 2,
+  },
+  offerText: {
+    color: 'white',
+    fontSize: SIZES.samll,
+    fontFamily: "Poppins-Bold",
+  },
+  heartIcon: {
+    position: 'absolute',
+    top: SIZES.samll,
+    right: SIZES.samll,
   },
   details: {
     padding: SIZES.samll,
@@ -64,8 +87,8 @@ const styles = StyleSheet.create({
     fontFamily: "Poppins-Bold",
     fontSize: SIZES.medium,
     marginBottom: 2,
-    textDecorationLine: 'line-through',  // Apply strikethrough if offerPrice exists
-    color: 'red'  // Change color to indicate original price
+    textDecorationLine: 'line-through',
+    color: 'red',
   },
   offerPrice: {
     fontFamily: "Poppins-Bold",
@@ -76,5 +99,5 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: SIZES.xSmall,
     right: SIZES.xSmall,
-  }
+  },
 });
