@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import BottomTabNavigation from "./BottomTabNavigation";
 import AuthStackNavigation from "./AuthStackNavigation";
+import { NavigationContainer } from "@react-navigation/native";
+import AppStackNavigation from "./AppStackNavigation";
 
 class RootNavigation extends Component {
     isLoggedIn = null;
@@ -19,10 +21,10 @@ class RootNavigation extends Component {
         this._retrieveData();
         const { route } = this.props;
         this.token = route?.params?.token;
-        if(this.token !== null && this.token !== 'null'){
+        if (this.token !== null && this.token !== 'null') {
             this._storeData();
             this._retrieveData();
-        } else{
+        } else {
             this.props.navigation.goBack();
         }
     }
@@ -63,7 +65,7 @@ class RootNavigation extends Component {
         return (
             <>
                 {this.isLoggedIn ? (
-                    <BottomTabNavigation />
+                    <AppStackNavigation />
                 ) : (
                     <AuthStackNavigation />
                 )}
@@ -71,5 +73,4 @@ class RootNavigation extends Component {
         );
     }
 }
-
 export default RootNavigation;

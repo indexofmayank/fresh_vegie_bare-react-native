@@ -9,9 +9,7 @@ import RootNavigation from "./navigations/RootNavigation";
 class App extends React.Component {
   render() {
     return (
-      <NavigationContainer>
         <RootNavigation />
-      </NavigationContainer>
     );
   }
 

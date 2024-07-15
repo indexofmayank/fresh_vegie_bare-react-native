@@ -19,7 +19,7 @@ const Headings = () => {
             <View style={styles.container}>
                 <View style={styles.header}>
                     <Text style={styles.headerTitle}>Shop by Categories</Text>
-                    <TouchableOpacity onPress={() => navigation.navigate('CategroyPage')}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Demo')}>
                         <Feather name="grid" size={30} />
                     </TouchableOpacity>
                 </View>
