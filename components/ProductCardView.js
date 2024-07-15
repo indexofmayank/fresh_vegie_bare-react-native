@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { COLORS, SHADOWS, SIZES } from '../constants/theme';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const ProductCardView = ({ product }) => {
   const navigation = useNavigation();
@@ -17,9 +18,15 @@ const ProductCardView = ({ product }) => {
               <Text style={styles.offerText}>{product.offer}% OFF</Text>
             </View>
           )}
-          <TouchableOpacity style={styles.heartIcon}>
-            <Ionicons name="heart-outline" size={25} color="red" />
-          </TouchableOpacity>
+          {product.isLiked ? (
+            <TouchableOpacity style={styles.heartIcon}>
+              <Ionicons name="heart" size={25} color={COLORS.frenGreen} />
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity style={styles.heartIcon}>
+              <Ionicons name="heart-outline" size={25} color={COLORS.frenGreen} />
+            </TouchableOpacity>
+          )}
         </View>
         <View style={styles.details}>
           <Text style={styles.title} numberOfLines={1}>{product.title}</Text>
@@ -60,7 +67,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: SIZES.samll,
     left: SIZES.samll,
-    backgroundColor: 'red',
+    backgroundColor: COLORS.frenGreen,
     borderRadius: SIZES.xSmall,
     paddingHorizontal: SIZES.xSmall,
     paddingVertical: 2,

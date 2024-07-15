@@ -6,9 +6,8 @@ import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 class Welcome extends Component {
-   
     
-    render() { //havet to use navigation here
+    render() {
         return (
             <View style={styles.container}>
                 <Text style={styles.welcomeTxt(COLORS.black, SIZES.xSmall)}>
